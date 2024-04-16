@@ -1,5 +1,6 @@
 package com.almaszy.inzynierka.controllers;
 
+import com.almaszy.inzynierka.services.MapService;
 import com.google.gson.Gson;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

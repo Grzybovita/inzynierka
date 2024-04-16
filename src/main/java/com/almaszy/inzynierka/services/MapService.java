@@ -1,4 +1,4 @@
-package com.almaszy.inzynierka.controllers;
+package com.almaszy.inzynierka.services;
 
 import com.almaszy.inzynierka.models.DistanceMatrixModel;
 import com.google.gson.Gson;

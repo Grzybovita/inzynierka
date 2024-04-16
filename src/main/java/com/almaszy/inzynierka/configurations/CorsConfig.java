@@ -1,4 +1,4 @@
-package com.almaszy.inzynierka;
+package com.almaszy.inzynierka.configurations;
 
 
 import org.springframework.context.annotation.Bean;
