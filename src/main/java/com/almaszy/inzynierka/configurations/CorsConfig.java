@@ -1,3 +1,4 @@
+/*
 package com.almaszy.inzynierka.configurations;
 
 
@@ -25,3 +26,4 @@ public class CorsConfig {
     };
   }
 }
+*/

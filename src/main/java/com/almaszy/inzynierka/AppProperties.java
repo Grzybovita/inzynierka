@@ -27,7 +27,8 @@ public class AppProperties {
     public static final class OAuth2 {
         private List<String> authorizedRedirectUris = new ArrayList<>();
 
-        public OAuth2 authorizedRedirectUris(List<String> authorizedRedirectUris) {
+        public OAuth2 authorizedRedirectUris(List<String> authorizedRedirectUris)
+        {
             this.authorizedRedirectUris = authorizedRedirectUris;
             return this;
         }
@@ -35,7 +36,8 @@ public class AppProperties {
 
     @Getter
     @Setter
-    public static class Client {
-        private String baseUrl;
+    public static class Client
+    {
+      private String baseUrl;
     }
 }

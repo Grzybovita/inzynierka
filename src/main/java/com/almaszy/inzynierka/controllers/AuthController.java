@@ -38,6 +38,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+
   @Autowired
   AuthenticationManager authenticationManager;
 
@@ -62,8 +63,8 @@ public class AuthController {
   private final Gson gson = new Gson();
 
   @PostMapping("/signin")
-  public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
-
+  public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest)
+  {
     try
     {
       Authentication authentication = authenticationManager
@@ -98,7 +99,6 @@ public class AuthController {
     {
       return ResponseEntity.badRequest().body(gson.toJson("usernameTaken"));
     }
-
     if (userRepository.existsByEmail(signUpRequest.getEmail()))
     {
       return ResponseEntity.badRequest().body(gson.toJson("emailTaken"));
