@@ -1,4 +1,4 @@
-package com.almaszy.inzynierka.security;
+package com.almaszy.inzynierka.configurations;
 
 import com.almaszy.inzynierka.security.jwt.AuthEntryPointJwt;
 import com.almaszy.inzynierka.security.jwt.AuthTokenFilter;

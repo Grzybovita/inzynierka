@@ -11,7 +11,7 @@
             <tr>
                 <td style="padding-left: 30px;">
                     <p>
-                        Cheers, <br /> <em>Piotrek</em>
+                        Cheers, <br /> <em>RouteMaster Admin</em>
                     </p>
                 </td>
             </tr>

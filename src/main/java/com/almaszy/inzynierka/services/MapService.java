@@ -27,34 +27,29 @@ public class MapService {
     long[][] distanceMatrix = gson.fromJson(distanceMatrixString, long[][].class);
 
     DistanceMatrixModel distanceMatrixModel = new DistanceMatrixModel(distanceMatrix);
-    RoutingIndexManager manager = new RoutingIndexManager(distanceMatrixModel.getDistanceMatrix().length, distanceMatrixModel.getVehicleNumber(), distanceMatrixModel.getDepot());
+    RoutingIndexManager manager = new RoutingIndexManager(
+            distanceMatrixModel.getDistanceMatrix().length,
+            distanceMatrixModel.getVehicleNumber(),
+            distanceMatrixModel.getDepot());
     RoutingModel routing = new RoutingModel(manager);
-
     final int transitCallbackIndex = routing.registerTransitCallback((long fromIndex, long toIndex) -> {
               // Convert from routing variable Index to user NodeIndex.
               int fromNode = manager.indexToNode(fromIndex);
               int toNode = manager.indexToNode(toIndex);
               return distanceMatrixModel.getDistanceMatrix()[fromNode][toNode];
             });
-
     routing.setArcCostEvaluatorOfAllVehicles(transitCallbackIndex);
-
     RoutingSearchParameters searchParameters = main.defaultRoutingSearchParameters()
                     .toBuilder()
                     .setFirstSolutionStrategy(FirstSolutionStrategy.Value.PATH_CHEAPEST_ARC)
                     .build();
 
     Assignment solution = routing.solveWithParameters(searchParameters);
-
     return calculateSolution(routing, manager, solution);
   }
 
   static int[] calculateSolution(RoutingModel routing, RoutingIndexManager manager, Assignment solution)
   {
-    // Solution cost.
-    logger.info("Objective: " + solution.objectiveValue() / 1000 + "kilometers");
-    // Inspect solution.
-    logger.info("Route:");
     long routeDistance = 0;
     List<Integer> route = new ArrayList<>();
     long index = routing.start(0);
@@ -66,7 +61,7 @@ public class MapService {
       routeDistance += routing.getArcCostForVehicle(previousIndex, index, 0);
     }
     route.add(manager.indexToNode(routing.end(0)));
-    logger.info(route.toString());
+    logger.info("Route: " + route);
     logger.info("Route distance: " + routeDistance / 1000 + "kilometers");
 
     int[] resultArray = new int[route.size()];
@@ -74,7 +69,6 @@ public class MapService {
     {
       resultArray[i] = route.get(i);
     }
-
     return resultArray;
   }
 
